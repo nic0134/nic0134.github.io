@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Resume</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #dcdcdc;
+    }
+
+    .container {
+        display: flex;
+        width: 95%;
+        margin: 20px auto;
+        min-height: 90vh; 
+        background: #5a5a5a;
+    }
+
+    /* Left icon sidebar */
+    .sidebar {
+        width: 60px;
+        background: #005b82;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 70px;
+        gap: 10px;
+    }
+
+    .icon {
+        width: 40px;
+        height: 40px;
+        border: 1px solid black;
+        background: #0077aa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 20px;
+    }
+
+    /* Profile card */
+    .profile-card {
+        width: 180px;
+        background: linear-gradient(#005b82, #000);
+        color: white;
+        text-align: center;
+        padding: 40px 10px 30px 10px; /* Reduced top padding to move everything up */
+    }
+
+    .profile-pic img {
+        width: 160px; 
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px; /* Pulls name closer to photo */
+    }
+
+    .profile-card h2 {
+        margin: 0; /* Removes extra space around name */
+        font-size: 22px;
+    }
+
+    .job-title {
+        margin-top: 2px;     /* Pulls it closer to the name */
+        margin-bottom: 50px; /* Creates the big gap above CONTACT INFO */
+        font-size: 14px;
+    }
+
+    /* Tightens the contact info block */
+    .contact-info p {
+        margin: 2px 0; /* Minimal space between phone and email */
+        font-size: 13px;
+    }
+
+    .contact-header {
+        margin-bottom: 5px !important; /* Pulls phone number closer to the header */
+    }
+
+    .links {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .links a {
+        color: #00aaff;
+        text-decoration: underline;
+        font-size: 14px;
+    }
+
+    /* Main content area */
+    .main-content {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about {
+        color: black; 
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    .main-content h1 {
+        text-align: center;
+        font-size: 36px;
+        color: black;
+    }
+
+    .objective-text {
+        color: black;
+        text-align: center;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <div class="icon">👤</div>
+        <div class="icon">📋</div>
+        <div class="icon">📞</div>
+    </div>
+
+    <div class="profile-card">
+        <div class="profile-pic">
+            <img src="profile.jpg" alt="Profile Picture">
+        </div>
+        
+        <h2>Nicholas Sayed</h2>
+        <p class="job-title">Cybersecurity</p>
+        
+        <div class="contact-info">
+            <p class="contact-header"><strong>CONTACT INFO</strong></p>
+            <p>206-661-1012</p>
+            <p>nicholassayed@gmail.com</p>
+        </div>
+
+        <div class="links">
+            <a href="https://www.linkedin.com/in/nico-sayed-2ab893337" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="about">
+            <p><strong>About me</strong></p>
+            <p>Central Washington University</p>
+            <p>Cybersecurity major</p>
+            <p><strong>Minoring in:</strong></p>
+            <ul>
+                <li>Project Management</li>
+                <li>Digital Forensics and Incident</li>
+                <li>Sustainable Practices in IT</li>
+                <li>Information Technology Mgmt</li>
+            </ul>
+        </div>
+        <h1>OBJECTIVE</h1>
+        <p class="objective-text">Seeking a cybersecurity internship position to apply technical skills in threat detection and incident response while contributing to client security solutions.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
