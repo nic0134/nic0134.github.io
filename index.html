@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicholas Sayed — Cybersecurity</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:        #c8c8c8;
+    --panel:     #5a5a5a;
+    --sidebar:   #004a69;
+    --card-top:  #005b82;
+    --card-bot:  #000d14;
+    --accent:    #00aaff;
+    --accent2:   #00d4c8;
+    --white:     #ffffff;
+    --off-white: #e8f4fa;
+    --muted:     #b0d4e3;
+    --dark-text: #0d1f2d;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+
+  /* ── OUTER CONTAINER ── */
+  .container {
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 88vh;
+    background: var(--panel);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    animation: rise 0.7s cubic-bezier(.22,.68,0,1.2) both;
+  }
+
+  @keyframes rise {
+    from { opacity:0; transform: translateY(24px) scale(0.985); }
+    to   { opacity:1; transform: translateY(0) scale(1); }
+  }
+
+  /* ── ICON SIDEBAR ── */
+  .sidebar {
+    width: 58px;
+    background: var(--sidebar);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 44px;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .icon {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--muted);
+    font-size: 17px;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+
+  .icon:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .icon.active {
+    color: var(--white);
+    background: rgba(255,255,255,0.15);
+    border-left: 3px solid var(--accent);
+  }
+
+  /* Tooltip */
+  .icon::after {
+    content: attr(title);
+    position: absolute;
+    left: 62px;
+    background: rgba(0,10,20,0.9);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+
+  .icon:hover::after { opacity: 1; }
+
+  /* ── PROFILE CARD ── */
+  .profile-card {
+    width: 210px;
+    flex-shrink: 0;
+    background: linear-gradient(165deg, var(--card-top) 0%, #003350 45%, var(--card-bot) 100%);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 16px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* subtle grid texture */
+  .profile-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,170,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,170,255,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+
+  .profile-pic {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .profile-pic img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 6px;
+    display: block;
+    border: 2px solid rgba(0,170,255,0.4);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+
+  /* accent corner */
+  .profile-pic::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; right: -4px;
+    width: 28px; height: 28px;
+    border-bottom: 2px solid var(--accent);
+    border-right:  2px solid var(--accent);
+    border-radius: 0 0 4px 0;
+  }
+
+  .profile-card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 2px;
+  }
+
+  .job-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 0 auto 18px;
+  }
+
+  .contact-block { width: 100%; }
+
+  .contact-header {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-bottom: 7px;
+    word-break: break-all;
+  }
+
+  .contact-row i {
+    color: var(--accent);
+    font-size: 11px;
+    width: 14px;
+    flex-shrink: 0;
+  }
+
+  .links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    background: rgba(0,170,255,0.1);
+    border: 1px solid rgba(0,170,255,0.25);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .link-btn:hover {
+    background: rgba(0,170,255,0.22);
+    border-color: var(--accent);
+    color: var(--white);
+    transform: translateX(2px);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main-content {
+    flex: 1;
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    overflow-y: auto;
+  }
+
+  /* Page title bar */
+  .page-title {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 4px;
+  }
+
+  .page-title h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 4px;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .page-title .title-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,170,255,0.6), transparent);
+  }
+
+  /* Section cards */
+  .card {
+    background: rgba(0,0,0,0.22);
+    border-radius: 6px;
+    padding: 24px 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    animation: fadeCard 0.6s ease both;
+  }
+
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.2s; }
+  .card:nth-child(4) { animation-delay: 0.3s; }
+
+  @keyframes fadeCard {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-label {
+    font-size: 9px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(0,170,255,0.2);
+  }
+
+  /* About text */
+  .about-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #c8dde6;
+    font-weight: 300;
+  }
+
+  .about-text strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* Minors grid */
+  .minors-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .minor-pill {
+    background: rgba(0,170,255,0.08);
+    border: 1px solid rgba(0,170,255,0.2);
+    border-radius: 4px;
+    padding: 9px 14px;
+    font-size: 12px;
+    color: var(--off-white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .minor-pill:hover {
+    background: rgba(0,170,255,0.15);
+    border-color: rgba(0,170,255,0.4);
+  }
+
+  .minor-pill i {
+    color: var(--accent);
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  /* Objective */
+  .objective-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #c8dde6;
+    font-weight: 300;
+    border-left: 3px solid var(--accent);
+    padding-left: 18px;
+  }
+
+  /* Highlights row */
+  .highlights {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .highlight-chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(0,212,200,0.08);
+    border: 1px solid rgba(0,212,200,0.2);
+    border-radius: 20px;
+    padding: 7px 14px;
+    font-size: 12px;
+    color: var(--off-white);
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .highlight-chip:hover {
+    background: rgba(0,212,200,0.16);
+    border-color: var(--accent2);
+    color: var(--white);
+  }
+
+  .highlight-chip i {
+    color: var(--accent2);
+    font-size: 11px;
+  }
+
+  /* Status badge */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(0,255,120,0.08);
+    border: 1px solid rgba(0,255,120,0.25);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: #7effc4;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #00ff88;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Icon Sidebar -->
+  <nav class="sidebar">
+    <a href="index.html" class="icon active" title="About Me">
+      <i class="fa-solid fa-user"></i>
+    </a>
+    <a href="resume.html" class="icon" title="Resume">
+      <i class="fa-solid fa-file-lines"></i>
+    </a>
+    <a href="contact.html" class="icon" title="Contact">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </nav>
+
+  <!-- Profile Card -->
+  <aside class="profile-card">
+    <div class="profile-pic">
+      <img src="profile.jpg" alt="Nicholas Sayed">
+    </div>
+
+    <h2>Nicholas<br>Sayed</h2>
+    <p class="job-title">Cybersecurity</p>
+
+    <div class="divider"></div>
+
+    <div class="contact-block">
+      <p class="contact-header">Contact</p>
+      <div class="contact-row">
+        <i class="fa-solid fa-phone"></i>
+        206-661-1012
+      </div>
+      <div class="contact-row">
+        <i class="fa-solid fa-envelope"></i>
+        nicholassayed@gmail.com
+      </div>
+      <div class="contact-row">
+        <i class="fa-solid fa-location-dot"></i>
+        Redmond, WA
+      </div>
+    </div>
+
+    <div class="links">
+      <a href="https://www.linkedin.com/in/nico-sayed-2ab893337" target="_blank" class="link-btn">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://nic0134.github.io" target="_blank" class="link-btn">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div class="page-title">
+      <h1>About Me</h1>
+      <div class="title-line"></div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      Open to Cybersecurity Internships
+    </div>
+
+    <!-- Who I Am -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-user-shield"></i> Who I Am</div>
+      <p class="about-text">
+        I'm a <strong>Cybersecurity student at Central Washington University</strong> with a passion for protecting systems, understanding how attacks work, and building the skills to defend against them. From earning my <strong>Eagle Scout</strong> rank to leading teams in fast-paced environments, I've always been someone who takes ownership and gets things done.
+        <br><br>
+        Outside the classroom I stay curious — whether that's studying cyberwarfare tactics, running cross-country, or diving into game design. I bring the same focus and discipline to everything I do.
+      </p>
+    </div>
+
+    <!-- Education -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-graduation-cap"></i> Education</div>
+      <p class="about-text" style="margin-bottom:16px;">
+        <strong>B.S. Cybersecurity</strong> — Central Washington University<br>
+        <span style="font-size:12px; color:#8ab8cc;">Expected June 2027 &nbsp;·&nbsp; GPA 3.0</span>
+      </p>
+      <p class="card-label" style="margin-bottom:10px; font-size:9px;"><i class="fa-solid fa-book"></i> Minors</p>
+      <div class="minors-grid">
+        <div class="minor-pill"><i class="fa-solid fa-diagram-project"></i> Project Management</div>
+        <div class="minor-pill"><i class="fa-solid fa-magnifying-glass"></i> Digital Forensics &amp; Incident Response</div>
+        <div class="minor-pill"><i class="fa-solid fa-leaf"></i> Sustainable Practices in IT</div>
+        <div class="minor-pill"><i class="fa-solid fa-server"></i> Information Technology Mgmt</div>
+      </div>
+    </div>
+
+    <!-- Objective -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-bullseye"></i> Objective</div>
+      <p class="objective-text">
+        Seeking a cybersecurity internship to apply technical skills in <strong>threat detection</strong> and <strong>incident response</strong> while contributing to real-world client security solutions. I'm eager to grow alongside experienced professionals and make a meaningful impact from day one.
+      </p>
+    </div>
+
+    <!-- Quick Highlights -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-star"></i> Highlights</div>
+      <div class="highlights">
+        <div class="highlight-chip"><i class="fa-solid fa-shield-halved"></i> Eagle Scout</div>
+        <div class="highlight-chip"><i class="fa-solid fa-person-running"></i> Varsity Cross-Country</div>
+        <div class="highlight-chip"><i class="fa-solid fa-code"></i> DigiPen Dual Enrollment</div>
+        <div class="highlight-chip"><i class="fa-solid fa-users"></i> Team Leadership</div>
+        <div class="highlight-chip"><i class="fa-solid fa-bug-slash"></i> Cyberwarfare Coursework</div>
+        <div class="highlight-chip"><i class="fa-solid fa-fingerprint"></i> Digital Forensics</div>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
