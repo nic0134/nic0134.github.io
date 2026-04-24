@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Nicholas Sayed</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #c8c8c8;
+    --panel:    #5a5a5a;
+    --sidebar:  #004a69;
+    --card-top: #005b82;
+    --card-bot: #000d14;
+    --accent:   #00aaff;
+    --accent2:  #00d4c8;
+    --white:    #ffffff;
+    --off-white:#e8f4fa;
+    --muted:    #b0d4e3;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+
+  .container {
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 88vh;
+    background: var(--panel);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    animation: rise 0.7s cubic-bezier(.22,.68,0,1.2) both;
+  }
+
+  @keyframes rise {
+    from { opacity:0; transform: translateY(24px) scale(0.985); }
+    to   { opacity:1; transform: translateY(0) scale(1); }
+  }
+
+  /* ── ICON SIDEBAR ── */
+  .sidebar {
+    width: 58px;
+    background: var(--sidebar);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 44px;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .icon {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--muted);
+    font-size: 17px;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+
+  .icon:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+
+  .icon.active {
+    color: var(--white);
+    background: rgba(255,255,255,0.15);
+    border-left: 3px solid var(--accent);
+  }
+
+  .icon::after {
+    content: attr(title);
+    position: absolute;
+    left: 62px;
+    background: rgba(0,10,20,0.9);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+
+  .icon:hover::after { opacity: 1; }
+
+  /* ── PROFILE CARD ── */
+  .profile-card {
+    width: 210px;
+    flex-shrink: 0;
+    background: linear-gradient(165deg, var(--card-top) 0%, #003350 45%, var(--card-bot) 100%);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 16px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,170,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,170,255,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+
+  .profile-pic { position: relative; margin-bottom: 16px; }
+
+  .profile-pic img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 6px;
+    display: block;
+    border: 2px solid rgba(0,170,255,0.4);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+
+  .profile-pic::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; right: -4px;
+    width: 28px; height: 28px;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    border-radius: 0 0 4px 0;
+  }
+
+  .profile-card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 2px;
+  }
+
+  .job-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 0 auto 18px;
+  }
+
+  .contact-block { width: 100%; }
+
+  .contact-header {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-bottom: 7px;
+    word-break: break-all;
+  }
+
+  .contact-row i { color: var(--accent); font-size: 11px; width: 14px; flex-shrink: 0; }
+
+  .links { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    background: rgba(0,170,255,0.1);
+    border: 1px solid rgba(0,170,255,0.25);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .link-btn:hover {
+    background: rgba(0,170,255,0.22);
+    border-color: var(--accent);
+    color: var(--white);
+    transform: translateX(2px);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main-content {
+    flex: 1;
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    overflow-y: auto;
+    height: 88vh;
+  }
+
+  .page-title {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .page-title h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 4px;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .page-title .title-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,170,255,0.6), transparent);
+  }
+
+  /* Cards */
+  .card {
+    background: rgba(0,0,0,0.22);
+    border-radius: 6px;
+    padding: 22px 26px;
+    border: 1px solid rgba(255,255,255,0.06);
+    animation: fadeCard 0.5s ease both;
+  }
+
+  .card:nth-child(2) { animation-delay: 0.05s; }
+  .card:nth-child(3) { animation-delay: 0.10s; }
+  .card:nth-child(4) { animation-delay: 0.15s; }
+  .card:nth-child(5) { animation-delay: 0.20s; }
+  .card:nth-child(6) { animation-delay: 0.25s; }
+
+  @keyframes fadeCard {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-label {
+    font-size: 9px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(0,170,255,0.2);
+  }
+
+  /* ── EDUCATION ── */
+  .edu-entry { margin-bottom: 16px; }
+  .edu-entry:last-child { margin-bottom: 0; }
+
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .edu-school-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .edu-date {
+    font-size: 10px;
+    color: var(--accent);
+    background: rgba(0,170,255,0.1);
+    border: 1px solid rgba(0,170,255,0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .edu-sub {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .edu-detail {
+    font-size: 11.5px;
+    color: #8ab8cc;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .edu-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 14px 0;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+
+  .skills-category-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .skill-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+
+  .skill-bullets li {
+    font-size: 12px;
+    color: #b8cdd6;
+    line-height: 1.6;
+    padding-left: 14px;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .skill-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .skill-para {
+    font-size: 12px;
+    color: #b8cdd6;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-entry { margin-bottom: 18px; }
+  .exp-entry:last-child { margin-bottom: 0; }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 3px;
+  }
+
+  .exp-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .exp-date {
+    font-size: 10px;
+    color: var(--accent);
+    background: rgba(0,170,255,0.1);
+    border: 1px solid rgba(0,170,255,0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .exp-sub {
+    font-size: 11.5px;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+
+  .exp-bullets li {
+    font-size: 12px;
+    color: #b8cdd6;
+    line-height: 1.65;
+    padding-left: 14px;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .exp-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .exp-bullets li strong { color: var(--white); font-weight: 600; }
+
+  .exp-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 16px 0;
+  }
+
+  /* ── COURSEWORK TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .tag {
+    font-size: 10.5px;
+    color: var(--off-white);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 5px 11px;
+    border-radius: 3px;
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    background: rgba(0,170,255,0.12);
+    border-color: rgba(0,170,255,0.3);
+    color: var(--white);
+  }
+
+  .tag.hl {
+    background: rgba(0,170,255,0.1);
+    border-color: rgba(0,170,255,0.25);
+    color: #7dd8f0;
+  }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+    body { padding: 0; background: var(--panel); }
+
+    .container {
+      flex-direction: column;
+      border-radius: 0;
+      min-height: 100vh;
+      box-shadow: none;
+      padding-bottom: 70px;
+    }
+
+    nav.sidebar {
+      display: flex !important;
+      flex-direction: row;
+      width: 100%;
+      height: 60px;
+      padding: 0;
+      gap: 0;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--sidebar);
+      border-top: 1px solid rgba(0,170,255,0.2);
+    }
+
+    nav.sidebar .icon {
+      flex: 1;
+      height: 100%;
+      border-left: none;
+      border-top: 3px solid transparent;
+      font-size: 20px;
+    }
+
+    nav.sidebar .icon.active {
+      border-left: none;
+      border-top: 3px solid var(--accent);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .icon::after { display: none; }
+
+    .profile-card {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 20px 16px;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .profile-pic { margin-bottom: 0; flex-shrink: 0; }
+    .profile-pic img { width: 72px; height: 72px; }
+    .profile-pic::after { width: 16px; height: 16px; }
+
+    .name-group { display: flex; flex-direction: column; }
+
+    .profile-card h2 { font-size: 20px; text-align: left; }
+    .job-title { text-align: left; margin-bottom: 0; }
+
+    .divider, .contact-block, .links { display: none; }
+
+    .main-content {
+      padding: 18px 14px;
+      gap: 16px;
+      height: auto;
+    }
+
+    .page-title h1 { font-size: 30px; }
+
+    .card { padding: 14px 14px; }
+
+    /* Skills: single column */
+    .skills-grid { grid-template-columns: 1fr; gap: 14px; }
+
+    /* Edu/Exp headers stack on small screens */
+    .edu-header,
+    .exp-header { flex-direction: column; gap: 5px; }
+
+    .edu-date, .exp-date { align-self: flex-start; }
+
+    .exp-bullets li,
+    .skill-bullets li,
+    .skill-para { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Icon Sidebar -->
+  <nav class="sidebar">
+    <a href="index.html" class="icon" title="About Me"><i class="fa-solid fa-user"></i></a>
+    <a href="resume.html" class="icon active" title="Resume"><i class="fa-solid fa-file-lines"></i></a>
+    <a href="contact.html" class="icon" title="Contact"><i class="fa-solid fa-envelope"></i></a>
+  </nav>
+
+  <!-- Profile Card -->
+  <aside class="profile-card">
+    <div class="profile-pic">
+      <img src="profile.jpg" alt="Nicholas Sayed">
+    </div>
+    <div class="name-group">
+      <h2>Nicholas<br>Sayed</h2>
+      <p class="job-title">Cybersecurity</p>
+    </div>
+    <div class="divider"></div>
+    <div class="contact-block">
+      <p class="contact-header">Contact</p>
+      <div class="contact-row"><i class="fa-solid fa-phone"></i> 206-661-1012</div>
+      <div class="contact-row"><i class="fa-solid fa-envelope"></i> nicholassayed@gmail.com</div>
+      <div class="contact-row"><i class="fa-solid fa-location-dot"></i> Redmond, WA 98053</div>
+    </div>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/nico-sayed-2ab893337" target="_blank" class="link-btn">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://nic0134.github.io" target="_blank" class="link-btn">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div class="page-title">
+      <h1>Resume</h1>
+      <div class="title-line"></div>
+    </div>
+
+    <!-- Education -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-graduation-cap"></i> Education</div>
+
+      <div class="edu-entry">
+        <div class="edu-header">
+          <div class="edu-school-name">Central Washington University</div>
+          <div class="edu-date">Expected June 2027</div>
+        </div>
+        <div class="edu-sub">Bachelor of Science — Cybersecurity &nbsp;·&nbsp; GPA 3.0</div>
+        <div class="edu-detail">
+          <strong style="color:#c8dde6; font-weight:500;">Minors:</strong> Project Management · Digital Forensics &amp; Incident Response · Sustainable Practices in IT · Information Technology Management
+        </div>
+      </div>
+
+      <div class="edu-divider"></div>
+
+      <div class="edu-entry">
+        <div class="edu-header">
+          <div class="edu-school-name">Redmond High School</div>
+          <div class="edu-date">GPA 3.6</div>
+        </div>
+        <div class="edu-detail">
+          Attended DigiPen College dual-enrollment program, achieving a 4.0 GPA in accelerated courses including <em>Digital Sound &amp; Music</em> and <em>Computer Game Design</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills & Abilities -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-star"></i> Skills &amp; Abilities</div>
+      <div class="skills-grid">
+        <div>
+          <div class="skills-category-title">Management &amp; Leadership</div>
+          <ul class="skill-bullets">
+            <li>Lead Valet: managed opening &amp; closing operations and trained new hires.</li>
+            <li>Eagle Scout &amp; Senior Patrol Leader, Troop 550, Redmond (2015–2021).</li>
+            <li>Eagle Scout Project: led full project lifecycle — fundraising, tool procurement, and team management.</li>
+            <li>Varsity Cross-Country team leader: guided workouts and fostered team motivation.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="skills-category-title">Customer Service</div>
+          <p class="skill-para">
+            Delivered outstanding customer service as a valet by warmly greeting guests, offering personalized assistance, and ensuring a seamless arrival and departure experience across high-volume hotel environments.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-briefcase"></i> Experience</div>
+
+      <div class="exp-entry">
+        <div class="exp-header">
+          <div class="exp-title">Marriott Waterfront Seattle — Evolution Hospitality</div>
+          <div class="exp-date">Jun – Sep 2025</div>
+        </div>
+        <div class="exp-sub">Summer Internship</div>
+        <ul class="exp-bullets">
+          <li>Parked and retrieved over <strong>100 vehicles daily</strong>, maintaining a <strong>zero-damage record</strong>.</li>
+          <li>Trained 2 new hires and led a team of 4 valets to manage peak periods.</li>
+          <li>Implemented a standardized system for <strong>vehicle tracking</strong> and guest communication.</li>
+          <li>Established clear communication protocols between valet and hotel staff.</li>
+        </ul>
+      </div>
+
+      <div class="exp-divider"></div>
+
+      <div class="exp-entry">
+        <div class="exp-header">
+          <div class="exp-title">Marriott Redmond — Towne Park Valet</div>
+          <div class="exp-date">Apr 2023 – Dec 2024</div>
+        </div>
+        <div class="exp-sub">Lead Valet Attendant</div>
+        <ul class="exp-bullets">
+          <li>Excelled in providing outstanding customer service and ensuring a seamless guest experience.</li>
+          <li>Managed diverse vehicle ranges, prioritizing security and careful handling at all times.</li>
+          <li>Optimized space utilization and minimized guest wait times in high-traffic areas.</li>
+          <li>Resolved guest concerns efficiently and maintained accurate logs of all vehicle movements.</li>
+          <li>Provided local area expertise — directions, restaurants — to enhance the overall guest experience.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Coursework -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-book-open"></i> Related Coursework</div>
+      <div class="tags">
+        <span class="tag hl">Digital Forensics</span>
+        <span class="tag hl">Cyberwarfare</span>
+        <span class="tag hl">Computer Networks</span>
+        <span class="tag hl">IT Systems Engineering</span>
+        <span class="tag">Computer Programming</span>
+        <span class="tag">Computer Architectural Design</span>
+        <span class="tag">Digital Systems Fundamentals</span>
+        <span class="tag">Seeing Through Data</span>
+        <span class="tag">Finance for IT Managers</span>
+        <span class="tag">Business Fundamentals</span>
+        <span class="tag">Leadership &amp; Supervision</span>
+        <span class="tag">Influencing Customer Decisions</span>
+        <span class="tag">IT Professionals</span>
+        <span class="tag">Computer Game Design (DigiPen)</span>
+        <span class="tag">Digital Sound &amp; Music (DigiPen)</span>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
