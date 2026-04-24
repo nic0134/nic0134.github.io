@@ -6,10 +6,12 @@
 <title>Resume - Nicholas Sayed</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+    /* Reset and Base Styles */
     body { 
         margin: 0; 
-        font-family: 'Segoe UI', Arial, sans-serif; 
-        background: #dcdcdc; 
+        padding: 0;
+        font-family: Arial, sans-serif; 
+        background-color: #dcdcdc; 
     }
 
     .container { 
@@ -17,14 +19,14 @@
         width: 95%; 
         margin: 20px auto; 
         min-height: 90vh; 
-        background: #ffffff; /* Ensures the main area is white */
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        background-color: #ffffff; /* White background */
+        border: 1px solid #ccc;
     }
     
     /* Navigation Sidebar */
     .sidebar { 
         width: 60px; 
-        background: #004a69; 
+        background-color: #004a69; 
         display: flex; 
         flex-direction: column; 
         align-items: center; 
@@ -42,88 +44,39 @@
         color: #b0d4e3; 
         font-size: 20px; 
         text-decoration: none; 
-        transition: all 0.3s ease; 
         border-left: 3px solid transparent; 
-    }
-
-    .icon:hover { 
-        color: white; 
-        background: rgba(255, 255, 255, 0.1); 
     }
 
     .icon.active { 
         color: white; 
-        background: rgba(255, 255, 255, 0.2); 
+        background-color: rgba(255, 255, 255, 0.2); 
         border-left: 3px solid #00aaff; 
     }
 
-    /* Resume Content - White background with Dark Text */
+    /* Main Content - Forced Visibility */
     .main-content { 
         flex: 1; 
-        padding: 40px 60px; 
-        color: #1a1a1a; /* Dark charcoal text */
-        overflow-y: auto; 
-        background: #ffffff;
-    }
-
-    .page-label {
-        text-align: center;
-        font-size: 12px;
-        letter-spacing: 4px;
-        color: #999;
-        margin-bottom: 5px;
-        text-transform: uppercase;
-        font-weight: bold;
+        padding: 40px; 
+        background-color: #ffffff !important; /* Force white */
+        color: #000000 !important; /* Force black text */
     }
 
     .resume-header {
         text-align: center;
         margin-bottom: 30px;
         border-bottom: 2px solid #004a69;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
     }
 
-    .resume-header h1 {
-        margin: 0;
-        font-size: 32px;
-        color: #004a69;
-        text-transform: uppercase;
-    }
-
-    .contact-bar {
-        margin-top: 8px;
-        font-size: 14px;
-        color: #444;
-    }
-
-    .resume-section { margin-bottom: 30px; }
+    h1 { color: #004a69; margin: 0; text-transform: uppercase; }
+    h2 { color: #004a69; border-bottom: 1px solid #eee; text-transform: uppercase; font-size: 18px; }
     
-    .resume-section h2 { 
-        color: #004a69; 
-        border-bottom: 1px solid #ddd; 
-        padding-bottom: 5px; 
-        font-size: 18px; 
-        text-transform: uppercase; 
-        margin-top: 0; 
-    }
+    .contact-info { margin-top: 10px; font-size: 14px; color: #333; }
+    .entry { margin-bottom: 20px; }
+    .entry-header { display: flex; justify-content: space-between; font-weight: bold; }
     
-    .entry { margin-bottom: 15px; }
-    
-    .entry-header { 
-        display: flex; 
-        justify-content: space-between; 
-        font-weight: bold; 
-        color: #000; 
-        font-size: 16px;
-    }
-    
-    .entry-sub { font-style: italic; color: #555; margin-bottom: 5px; font-size: 14px; }
-    
-    ul { margin: 5px 0; padding-left: 18px; }
-    li { margin-bottom: 5px; font-size: 14px; line-height: 1.5; color: #333; }
-    
-    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .skills-category strong { display: block; color: #004a69; margin-bottom: 5px; font-size: 15px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 5px; font-size: 14px; color: #000; }
 </style>
 </head>
 <body>
@@ -136,15 +89,10 @@
     </div>
 
     <div class="main-content">
-        <div class="page-label">Resume</div>
-
         <div class="resume-header">
             <h1>Nicholas Sayed</h1>
-            <div class="contact-bar">
+            <div class="contact-info">
                 Redmond, WA | 206-661-1012 | nicholassayed@gmail.com [cite: 2]
-            </div>
-            <div class="contact-bar">
-                <a href="https://www.linkedin.com/in/nico-sayed-2ab893337" target="_blank" style="color: #005b82; text-decoration: none;">LinkedIn Profile</a>
             </div>
         </div>
 
@@ -155,10 +103,9 @@
                     <span>Central Washington University</span>
                     <span>Expected June 2027</span>
                 </div>
-                <div class="entry-sub">Bachelor of Science in Cybersecurity | GPA: 3.0 [cite: 3]</div>
+                <p>Bachelor of Science in Cybersecurity | GPA: 3.0 [cite: 3]</p>
                 <ul>
                     <li>Minors: Artificial Intelligence, Business Administration [cite: 3]</li>
-                    <li>Related Coursework: Digital Forensics, Cyberwarfare, Computer Networks, IT Systems Engineering. [cite: 3]</li>
                 </ul>
             </div>
         </div>
@@ -171,8 +118,8 @@
                     <span>June 2025 - Sept 2025</span>
                 </div>
                 <ul>
-                    <li>Implemented a digital valet system that reduced vehicle retrieval time by 40%. [cite: 3]</li>
-                    <li>Managed peak operations of 100+ daily vehicle movements with a zero-damage record. [cite: 3]</li>
+                    <li>Reduced vehicle retrieval time by 40% using digital systems[cite: 3].</li>
+                    <li>Managed 100+ daily vehicle movements with a zero-damage record[cite: 3].</li>
                 </ul>
             </div>
 
@@ -181,32 +128,19 @@
                     <span>Marriott Redmond - Towne Park Valet</span>
                     <span>April 2023 - Dec 2024</span>
                 </div>
-                <div class="entry-sub">Lead Valet Attendant [cite: 3]</div>
                 <ul>
-                    <li>Directed traffic flow and resolved guest concerns professionally. [cite: 3]</li>
-                    <li>Maintained accurate logs of vehicle movements and valet tickets. [cite: 3]</li>
+                    <li>Lead Valet Attendant managing opening and closing operations[cite: 3].</li>
+                    <li>Trained new hires and resolved guest concerns professionally[cite: 3].</li>
                 </ul>
             </div>
         </div>
 
         <div class="resume-section">
-            <h2>Leadership & Skills</h2>
-            <div class="skills-grid">
-                <div class="skills-category">
-                    <strong>Leadership</strong>
-                    <ul>
-                        <li>Eagle Scout (Troop 550) [cite: 3]</li>
-                        <li>Varsity XCC Team Leader [cite: 3]</li>
-                    </ul>
-                </div>
-                <div class="skills-category">
-                    <strong>Technical</strong>
-                    <ul>
-                        <li>Threat Detection & Incident Response [cite: 3]</li>
-                        <li>Digital Forensics [cite: 3]</li>
-                    </ul>
-                </div>
-            </div>
+            <h2>Leadership</h2>
+            <ul>
+                <li>Eagle Scout - Troop 550, Redmond[cite: 3].</li>
+                <li>Varsity XCC Team Leader[cite: 3].</li>
+            </ul>
         </div>
     </div>
 </div>
