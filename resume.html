@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume - Nicholas Sayed</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #dcdcdc; }
+    .container { display: flex; width: 95%; margin: 20px auto; min-height: 90vh; background: #5a5a5a; }
+    
+    /* Sidebar Navigation */
+    .sidebar { width: 60px; background: #004a69; display: flex; flex-direction: column; align-items: center; padding-top: 40px; gap: 20px; }
+    .icon { width: 100%; height: 42px; display: flex; justify-content: center; align-items: center; color: #b0d4e3; font-size: 20px; text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; }
+    .icon:hover { color: white; background: rgba(255, 255, 255, 0.1); }
+    .icon.active { color: white; background: rgba(255, 255, 255, 0.2); border-left: 3px solid #00aaff; }
+
+    /* Profile Sidebar */
+    .profile-card { width: 180px; background: linear-gradient(#005b82, #000); color: white; text-align: center; padding: 40px 10px 30px 10px; }
+    .profile-pic img { width: 160px; height: auto; border-radius: 5px; margin-bottom: 10px; }
+    .profile-card h2 { margin: 0; font-size: 22px; }
+    .job-title { margin-top: 2px; margin-bottom: 50px; font-size: 14px; }
+    .contact-info p { margin: 2px 0; font-size: 12px; }
+    .links { margin-top: 15px; text-align: center; }
+    .links a { color: #00aaff; text-decoration: underline; font-size: 14px; }
+
+    /* Resume Content */
+    .main-content { flex: 1; padding: 40px; background: #f9f9f9; color: #333; overflow-y: auto; height: 90vh; }
+    .resume-section { margin-bottom: 30px; }
+    .resume-section h2 { color: #004a69; border-bottom: 2px solid #004a69; padding-bottom: 5px; font-size: 20px; text-transform: uppercase; margin-top: 0; }
+    
+    .entry { margin-bottom: 20px; }
+    .entry-header { display: flex; justify-content: space-between; font-weight: bold; color: #000; }
+    .entry-sub { font-style: italic; color: #555; margin-bottom: 5px; }
+    
+    ul { margin: 5px 0; padding-left: 20px; }
+    li { margin-bottom: 4px; font-size: 14px; line-height: 1.4; }
+    
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 14px; }
+    .skills-category strong { display: block; color: #004a69; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <a href="index.html" class="icon" title="About Me"><i class="fa-solid fa-user"></i></a>
+        <a href="resume.html" class="icon active" title="Resume"><i class="fa-solid fa-file-lines"></i></a>
+        <a href="contact.html" class="icon" title="Contact"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+
+    <div class="profile-card">
+        <div class="profile-pic"><img src="profile.jpg" alt="Profile Picture"></div>
+        <h2>Nicholas Sayed</h2>
+        <p class="job-title">Cybersecurity Student</p>
+        <div class="contact-info">
+            <p><strong>CONTACT INFO</strong></p>
+            <p>206-661-1012</p>
+            <p>nicholassayed@gmail.com</p>
+        </div>
+        <div class="links"><a href="https://www.linkedin.com/in/nico-sayed-2ab893337" target="_blank">LinkedIn</a></div>
+    </div>
+
+    <div class="main-content">
+        
+        <div class="resume-section">
+            <h2>Education</h2>
+            <div class="entry">
+                <div class="entry-header">
+                    <span>Central Washington University</span>
+                    <span>Expected June 2027</span>
+                </div>
+                <div class="entry-sub">Bachelor of Science in Cybersecurity | GPA: 3.0</div>
+                <ul>
+                    <li><strong>Minors:</strong> Artificial Intelligence, Business Administration</li>
+                    <li><strong>Related Coursework:</strong> Digital Forensics, Cyberwarfare, Computer Networks, IT Systems Engineering, Data Analysis, and Programming.</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <div class="entry-header">
+                    <span>Redmond High School / DigiPen College</span>
+                    <span>3.6 GPA</span>
+                </div>
+                <ul>
+                    <li>Achieved 4.0 GPA in accelerated classes: Computer Game Design and Digital Sound/Music.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h2>Professional Experience</h2>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <span>Marriot Waterfront Seattle - Evolution (Internship)</span>
+                    <span>June 2025 - Sept 2025</span>
+                </div>
+                <ul>
+                    <li>Implemented and managed a digital valet system, reducing vehicle retrieval time by 40%.</li>
+                    <li>Managed peak operations of 100+ daily vehicle movements with a zero-damage record.</li>
+                    <li>Trained new hires and established communication protocols between valet and hotel staff.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span>Marriot Redmond - Towne Park Valet</span>
+                    <span>April 2023 - Dec 2024</span>
+                </div>
+                <div class="entry-sub">Lead Valet Attendant</div>
+                <ul>
+                    <li>Directed traffic flow and optimized space utilization in high-traffic environments.</li>
+                    <li>Resolved guest concerns professionally while maintaining accurate movement logs and tickets.</li>
+                    <li>Provided concierge-level local area expertise to enhance the guest experience.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span>Firenze Ristorante Italiano</span>
+                    <span>July 2021 - Dec 2022</span>
+                </div>
+                <div class="entry-sub">Assistant Server</div>
+                <ul>
+                    <li>Managed restaurant efficiency during high-traffic weekend shifts.</li>
+                    <li>Supervised food preparation and addressed customer requests promptly.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h2>Leadership & Skills</h2>
+            <div class="skills-grid">
+                <div class="skills-category">
+                    <strong>Leadership:</strong>
+                    <ul>
+                        <li>Eagle Scout (Troop 550) - Managed team fundraising, procurement, and park service coordination.</li>
+                        <li>Varsity XCC Team Leader - Fostered motivational environments and led workouts.</li>
+                    </ul>
+                </div>
+                <div class="skills-category">
+                    <strong>Technical & Management:</strong>
+                    <ul>
+                        <li>Digital Forensics & Threat Detection</li>
+                        <li>Digital Valet System Implementation</li>
+                        <li>Personnel Training & Supervision</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
